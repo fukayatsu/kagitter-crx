@@ -5,7 +5,8 @@ $("#tweet").on('click', function() {
   var inputString  = $('#tweet_string').val();
   var tweetString = CryptoJS.AES.encrypt(inputString, setting.passphrase).toString();
 
-  if (setting.suffix) { tweetString += (' ' + setting.suffix) }
+  if (setting.prefix) { tweetString = setting.prefix + ' ' + tweetString }
+  if (setting.suffix) { tweetString = tweetString    + ' ' + setting.suffix }
 
   var intent = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(tweetString);
 
